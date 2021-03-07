@@ -1,6 +1,8 @@
+using H_F_M_APPDATA.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +26,9 @@ namespace H_F_M_APP
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            //defining dbcontext to the hfm_context
+            services.AddDbContext<HFM_Context>(a=>a.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,7 +46,7 @@ namespace H_F_M_APP
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseCors();
             app.UseRouting();
 
             app.UseAuthorization();
