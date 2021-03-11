@@ -1,0 +1,124 @@
+﻿/* Made with love by Mutiullah Samim*/
+
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+
+.margin {
+    
+    
+    margin-bottom: 45px;
+}
+header {
+z-index:1;
+}
+.container {
+    height: 100%;
+    
+    align-content: center;
+}
+li:hover {
+    background-color: silver;
+    padding-right: 7px;
+    transition-delay: 0.1s;
+    transition-duration: 0.7s;
+    border-right: 8px solid black;
+    border-left: 8px solid black;
+    font-size: 14px;
+    font-family: Arial Black;
+    height: 49px;
+
+}
+
+.menuSm {
+    color: white;
+    font-size: medium;
+    background-color: white;
+    padding: 0px 1px 0px 8px;
+    float: left;
+    width: auto;
+    border-right: 2px solid black;
+    
+    position: fixed;
+    border-bottom-right-radius:35px;
+}
+    .menuSm:hover {
+        border-bottom: 1px solid black;
+    }
+.container1 {
+    max-width: 100%;
+}
+.card {
+    height: 370px;
+    
+    margin-top: 95px;
+    margin-left: 15px;
+    margin-bottom: auto;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5) !important;
+}
+
+.social_icon span {
+    font-size: 60px;
+    margin-left: 10px;
+    color: silver;
+}
+
+    .social_icon span:hover {
+        color: white;
+        cursor: pointer;
+    }
+
+.card-header h3 {
+    color: white;
+}
+
+.social_icon {
+    position: absolute;
+    right: 20px;
+    top: -45px;
+}
+
+.input-group-prepend span {
+    width: 50px;
+    background-color: silver;
+    color: blue;
+    border: 0 !important;
+}
+
+input:focus {
+    outline: 0 0 0 0 !important;
+    box-shadow: 0 0 0 0 !important;
+}
+
+.remember {
+    color: white;
+    font-size: 18px;
+}
+
+    .remember input {
+        width: 20px;
+        height: 20px;
+        margin-left: 15px;
+        margin-right: 5px;
+        font-size:18px;
+    }
+
+.login_btn {
+    color: black;
+    background-color: white;
+    width: 100px;
+    font-size:15px;
+}
+
+    .login_btn:hover {
+        color: black;
+        background-color: white;
+    }
+
+.links {
+    color: white;
+}
+
+    .links a {
+        margin-left: 4px;
+    }

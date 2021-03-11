@@ -3,31 +3,103 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - H_F_M_APP</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>@ViewData["Title"] - Home Bills management</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <!--Bootsrap 4 CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <!--Custom styles-->
+
+    <link href="~/lib/bootstrap/dist/css/Style.css" rel="stylesheet" />
+
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">H_F_M_APP</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+@using Microsoft.AspNetCore.Http;
+@using Microsoft;
+
+<body class="body overflow-auto">
+    @{ string username = "";
+        int UserType = 0;
+        }
+    @if (!string.IsNullOrEmpty(Context.Session.GetString("Loged")))
+    {
+        var username_ = Context.Session.GetString("Loged").ToString().Split("_");
+
+        username = username_[0].Replace("_", "").ToString();
+        UserType = Convert.ToInt32( username_[2].Replace("_", "").ToString());
+
+    }
+    <header class="">
+        <nav class="margin navbar   navbar-toggleable-xl navbar-light bg-white border-bottom box-shadow mb-auto">
+
+            <div class="container container1 float-xl-left  position-relative" >
+
+                <button class="navbar-toggler " type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                <div class="float-right position-static"  >
+                <a class="navbar-brand form-control-plaintext text-right" asp-area="" asp-controller="Home" asp-action="Index"> @username.ToUpper() WellCome To H_F_M</a>
                 </div>
             </div>
+
+            
         </nav>
+        
+        <div class="navbar-collapse  collapsing menuSm ">
+            <ul class="navbar-nav flex-grow-0 position-relative ">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">About The App</a>
+                </li>
+                @{
+                    #region Show menu based on user is access
+                    if (username != "")
+                    {
+                        if (UserType == 1)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Manage Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Geral Reports</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Update Values</a>
+                            </li>
+
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Manage BudGet</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Bill</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">My Reports</a>
+                        </li>
+                        <li class="nav-item "style="border-bottom-right-radius:35px;">
+                            <a class="nav-link text-dark "  asp-area="" asp-controller="User" asp-action="LogOut">Sair</a>
+                        </li>
+                    }
+                    #endregion
+                }
+
+
+
+
+            </ul>
+
+        </div>
+
+
+
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -37,7 +109,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - H_F_M_APP - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; @DateTime.Now.Year; - H_F_M_APP - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
