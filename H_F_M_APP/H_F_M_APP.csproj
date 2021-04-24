@@ -7,19 +7,94 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <PackageIcon></PackageIcon>
     <Authors>Daniel Ferreira Dos Reis</Authors>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AngularJS.Core" Version="1.8.2" />
+    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\H_F_M_APPDATA\H_F_M_APPDATA.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\ModelView\" />
+    <Folder Include="Views\Register\" />
+    <Folder Include="wwwroot\client\" />
+    <Folder Include="script\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\client\.browserslistrc" />
+    <None Include="wwwroot\client\.editorconfig" />
+    <None Include="wwwroot\client\.gitignore" />
+    <None Include="wwwroot\client\dist\myapp\favicon.ico" />
+    <None Include="wwwroot\client\dist\myapp\index.html" />
+    <None Include="wwwroot\client\dist\myapp\main.js" />
+    <None Include="wwwroot\client\dist\myapp\main.js.map" />
+    <None Include="wwwroot\client\dist\myapp\polyfills.js" />
+    <None Include="wwwroot\client\dist\myapp\polyfills.js.map" />
+    <None Include="wwwroot\client\dist\myapp\runtime.js" />
+    <None Include="wwwroot\client\dist\myapp\runtime.js.map" />
+    <None Include="wwwroot\client\dist\myapp\styles.css" />
+    <None Include="wwwroot\client\dist\myapp\styles.css.map" />
+    <None Include="wwwroot\client\dist\myapp\vendor.js" />
+    <None Include="wwwroot\client\dist\myapp\vendor.js.map" />
+    <None Include="wwwroot\client\dist\out-tsc\e2e\src\app.e2e-spec.js" />
+    <None Include="wwwroot\client\dist\out-tsc\e2e\src\app.e2e-spec.js.map" />
+    <None Include="wwwroot\client\dist\out-tsc\e2e\src\app.po.js" />
+    <None Include="wwwroot\client\dist\out-tsc\e2e\src\app.po.js.map" />
+    <None Include="wwwroot\client\dist\out-tsc\src\app\app-routing.module.js" />
+    <None Include="wwwroot\client\dist\out-tsc\src\app\app-routing.module.js.map" />
+    <None Include="wwwroot\client\dist\out-tsc\src\app\app.component.js" />
+    <None Include="wwwroot\client\dist\out-tsc\src\app\app.component.js.map" />
+    <None Include="wwwroot\client\dist\out-tsc\src\app\app.component.spec.js" />
+    <None Include="wwwroot\client\dist\out-tsc\src\app\app.component.spec.js.map" />
+    <None Include="wwwroot\client\dist\out-tsc\src\app\app.module.js" />
+    <None Include="wwwroot\client\dist\out-tsc\src\app\app.module.js.map" />
+    <None Include="wwwroot\client\dist\out-tsc\src\environments\environment.js" />
+    <None Include="wwwroot\client\dist\out-tsc\src\environments\environment.js.map" />
+    <None Include="wwwroot\client\dist\out-tsc\src\environments\environment.prod.js" />
+    <None Include="wwwroot\client\dist\out-tsc\src\environments\environment.prod.js.map" />
+    <None Include="wwwroot\client\dist\out-tsc\src\main.js" />
+    <None Include="wwwroot\client\dist\out-tsc\src\main.js.map" />
+    <None Include="wwwroot\client\dist\out-tsc\src\polyfills.js" />
+    <None Include="wwwroot\client\dist\out-tsc\src\polyfills.js.map" />
+    <None Include="wwwroot\client\dist\out-tsc\src\test.js" />
+    <None Include="wwwroot\client\dist\out-tsc\src\test.js.map" />
+    <None Include="wwwroot\client\e2e\protractor.conf.js" />
+    <None Include="wwwroot\client\e2e\src\app.e2e-spec.ts" />
+    <None Include="wwwroot\client\e2e\src\app.po.ts" />
+    <None Include="wwwroot\client\karma.conf.js" />
+    <None Include="wwwroot\client\out-tsc\e2e\app.e2e-spec.js" />
+    <None Include="wwwroot\client\out-tsc\e2e\app.e2e-spec.js.map" />
+    <None Include="wwwroot\client\out-tsc\e2e\app.po.js" />
+    <None Include="wwwroot\client\out-tsc\e2e\app.po.js.map" />
+    <None Include="wwwroot\client\README.md" />
+    <None Include="wwwroot\client\src\app\app-routing.module.ts" />
+    <None Include="wwwroot\client\src\app\app.component.css" />
+    <None Include="wwwroot\client\src\app\app.component.html" />
+    <None Include="wwwroot\client\src\app\app.component.spec.ts" />
+    <None Include="wwwroot\client\src\app\app.component.ts" />
+    <None Include="wwwroot\client\src\app\app.module.ts" />
+    <None Include="wwwroot\client\src\assets\.gitkeep" />
+    <None Include="wwwroot\client\src\environments\environment.prod.ts" />
+    <None Include="wwwroot\client\src\environments\environment.ts" />
+    <None Include="wwwroot\client\src\favicon.ico" />
+    <None Include="wwwroot\client\src\index.html" />
+    <None Include="wwwroot\client\src\main.ts" />
+    <None Include="wwwroot\client\src\polyfills.ts" />
+    <None Include="wwwroot\client\src\styles.css" />
+    <None Include="wwwroot\client\src\test.ts" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,54 @@
+﻿@model H_F_M_APPMODEL.Models.Spends_.Spends
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+<div class="row bg-light">
+    
+    
+    <div class="col-md-4">
+        <h4>Spends</h4>
+
+        
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label  class="control-label">Description</label>
+                <input placeholder="Description" name="Spend_Desc" asp-for="Spend_Desc" class="form-control " required/>
+                <span asp-validation-for="Spend_Desc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Payment_Method.Name" class="control-label"></label>
+                <select asp-for="Payment_Method.Name" class="form-control" asp-items="ViewBag.P_List"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Value" class="control-label"></label>
+                <input asp-for="Value" class="form-control" />
+                <span asp-validation-for="Value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateTime" class="control-label"></label>
+                <input asp-for="DateTime" class="form-control" />
+                <span asp-validation-for="DateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+    
+    
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

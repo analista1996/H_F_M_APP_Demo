@@ -31,10 +31,10 @@ namespace H_F_M_APP
             //defining dbcontext to the hfm_context
             services.AddDbContext<HFM_Context>(a=>a.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddCors();
-
+            services.AddMvc(vc=>vc.EnableEndpointRouting =false );
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
@@ -61,13 +61,19 @@ namespace H_F_M_APP
             app.UseRouting();
             app.UseSession();
             app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
+           
+            app.UseMvc(endpoints =>
             {
-                endpoints.MapControllerRoute(
+                endpoints.MapRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}"
+                    );
+                endpoints.MapRoute(
+                    name: "Index",
+                    template: "{controller=User}/{action=Index}/{id?}"
+                    );
             });
+           
         }
     }
 }

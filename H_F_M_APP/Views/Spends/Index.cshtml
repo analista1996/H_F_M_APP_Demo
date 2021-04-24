@@ -1,0 +1,79 @@
+﻿@model IEnumerable<H_F_M_APPMODEL.Models.Spends_.Spends>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<div class="container bg-light overflow-auto max" >
+    <h1>Spends List</h1>
+
+    
+    <form asp-action="Index" method="get">
+        <p>
+            <div class="bg-light">
+                <input style="height:40px;" type="search" placeholder="Search" id="SeachString" value="@ViewData["CurrentFilter"]" required name="SeachString" class="search w-50 float-left form-control box-shadow" /><input type="submit" value="Search" style="height:40px;" class=" fas fa-search float-left btn btn-warning p-2 pl-2 w-15">
+            </div>
+        
+            <a asp-action="Create" style="height:40px;" class="btn btn-success float-right">Create New</a>
+        
+        </p>
+    </form>
+    <table class="table bg-light " >
+        <thead>
+            <tr>
+                <th>
+                    <a asp-action="Index" asp-route-orderby="@ViewData["SortByDesc"]">Description</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-orderby="@ViewData["SortByValue"]">Value</a>
+
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-orderby="@ViewData["SortByDate"]">DateTime</a>
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User)
+
+                </th>
+                <th>
+                    Method
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody >
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                       @Html.DisplayFor(modelItem => item.Spend_Desc)
+                    </td>
+                    <td style="width:98px;">
+                        £  @Html.DisplayFor(modelItem => item.Value)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.UserName)
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.Payment_Method.Name)
+                    </td>
+                    <td class="table-striped">
+                        <div align="center">
+                       
+                        <a asp-action="Edit" class="btn btn-warning m-1" asp-route-id="@item.Spend_Id">Edit</a>
+                        <a asp-action="Details" class="btn btn-warning m-1" asp-route-id="@item.Spend_Id">Details</a>
+                        <a asp-action="Delete" class="btn btn-danger " asp-route-id="@item.Spend_Id">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
