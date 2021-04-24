@@ -6,6 +6,11 @@
     <title>@ViewData["Title"] - Home Bills management</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/vex/css/vex-theme-os.css" rel="stylesheet" />
+    <link href="~/vex/css/vex.css" rel="stylesheet" />
+    <script src="~/vex/js/vex.js"></script>
+    <script src="~/vex/js/vex.combined.min.js"></script>
+
     <!--Bootsrap 4 CDN-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
@@ -15,106 +20,126 @@
     <!--Custom styles-->
 
     <link href="~/lib/bootstrap/dist/css/Style.css" rel="stylesheet" />
-
+    <script src="~/angular-1.7.9/angular.js"></script>
 </head>
 @using Microsoft.AspNetCore.Http;
 @using Microsoft;
 
-<body class="body overflow-auto">
-    @{ string username = "";
-        int UserType = 0;
+<body class="body overflow-auto" >
+    <app-root>
+        @{ string username = "";
+            int UserType = 0;
         }
-    @if (!string.IsNullOrEmpty(Context.Session.GetString("Loged")))
-    {
-        var username_ = Context.Session.GetString("Loged").ToString().Split("_");
+        @if (!string.IsNullOrEmpty(Context.Session.GetString("Loged")))
+        {
+            var username_ = Context.Session.GetString("Loged").ToString().Split("_");
 
-        username = username_[0].Replace("_", "").ToString();
-        UserType = Convert.ToInt32( username_[2].Replace("_", "").ToString());
+            username = username_[0].Replace("_", "").ToString();
+            UserType = Convert.ToInt32(username_[2].Replace("_", "").ToString());
 
-    }
-    <header class="">
-        <nav class="margin navbar   navbar-toggleable-xl navbar-light bg-white border-bottom box-shadow mb-auto">
+        }
+        else
+        {
 
-            <div class="container container1 float-xl-left  position-relative" >
+        }
 
-                <button class="navbar-toggler " type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="float-right position-static"  >
-                <a class="navbar-brand form-control-plaintext text-right" asp-area="" asp-controller="Home" asp-action="Index"> @username.ToUpper() WellCome To H_F_M</a>
+        <header class="">
+            <nav class="margin navbar    navbar-toggleable-xl navbar-light bg-white border-bottom box-shadow mb-auto">
+
+                <div class="container container1 float-xl-left  position-relative">
+
+                    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="float-right position-static">
+                        <a id="us" class="navbar-brand form-control-plaintext text-right" asp-area="" asp-controller="Home" asp-action="Index"> @username.ToUpper() WellCome To H_F_M</a>
+                    </div>
                 </div>
+
+
+            </nav>
+
+            <div class="navbar-collapse  collapsing menuSm ">
+                <ul class="navbar-nav flex-grow-0 position-relative " id="main">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item sobre">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">About The App</a>
+                    </li>
+                    @{
+                        #region Show menu based on user is access
+                        if (username != "")
+                        {
+                            if (UserType == 1)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Manage Users</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Geral Reports</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Update Values</a>
+                                </li>
+
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Manage BudGet</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Bill</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Reports" asp-action="Index">My Reports</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Spends" asp-action="Index">My Spends</a>
+                            </li>
+                            <li class="nav-item li_end">
+                                <a class="nav-link text-dark " asp-area="" asp-controller="User" asp-action="LogOut">Sair</a>
+                            </li>
+                        }
+                        #endregion
+                    }
+
+
+
+
+                </ul>
+
             </div>
 
-            
-        </nav>
-        
-        <div class="navbar-collapse  collapsing menuSm ">
-            <ul class="navbar-nav flex-grow-0 position-relative ">
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">About The App</a>
-                </li>
-                @{
-                    #region Show menu based on user is access
-                    if (username != "")
-                    {
-                        if (UserType == 1)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Manage Users</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Geral Reports</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Update Values</a>
-                            </li>
-
-                        }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Manage BudGet</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Bill</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">My Reports</a>
-                        </li>
-                        <li class="nav-item "style="border-bottom-right-radius:35px;">
-                            <a class="nav-link text-dark "  asp-area="" asp-controller="User" asp-action="LogOut">Sair</a>
-                        </li>
-                    }
-                    #endregion
-                }
 
 
 
-
-            </ul>
-
+        </header>
+        <div class="container" >
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
 
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; @DateTime.Now.Year; - H_F_M_APP - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+
+        <script type="text/javascript" src="~/client/dist/myapp/main.js"></script>
+        <script type="text/javascript" src="~/client/dist/myapp/polyfills.js"></script>
+  
+        <script type="text/javascript" src="~/client/dist/myapp/vendor.js"></script>
 
 
 
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; @DateTime.Now.Year; - H_F_M_APP - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+        @RenderSection("Scripts", required: false)
+    </app-root>
 </body>
 </html>

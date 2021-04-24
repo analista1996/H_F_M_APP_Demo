@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+        ViewData["Title"] = "Reports";
+}
+
+<div class="bg-white minimun-size overflow-auto" ng-app="hfmapp" ng-controller="ReportsCtrl">
+
+    <ul id="menu" class=" nav-link text-center reports_ list-group-horizontal-xl bg-info">
+        <li class="btn"><a ng-click="teste();">Partial Resume</a></li>
+        <li class="btn">Resume For Period</li>
+        <li class="btn">General Resume</li>
+    </ul>
+    <hr class="border-right " style="height:2px; background-color:silver;" />
+    <div class="container-fluid ">
+        <div align="center"><h2>Title</h2></div>
+        <div class="display" id="display" ng-repeat="li in list">
+            <label >{{li}}</label>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    angular.module("hfmapp", []);
+    angular.module("hfmapp").controller("ReportsCtrl", function ($scope) {
+        $scope.app = "hfmapp";
+        $scope.list = null;
+
+        $scope.teste = function () {
+            
+            $.get("Reports/GetPartial",
+                function (data) {
+
+                    $scope.list =  data;
+                    $scope.$apply();
+                }, 'json'); // Set the type to ‘json’!
+        };
+
+    });
+</script>

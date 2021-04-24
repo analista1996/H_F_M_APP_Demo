@@ -21,17 +21,23 @@ namespace H_F_M_APP.Models.IRepository.IUsers
         {
             try
             {
-                var user_ = _db.Users.Where(a => a.PassWord.Equals(password) && a.UserName.Equals(user)).First();
-                if (user_.User_Id != 0) 
+                var user_ = _db.Users.Where(a => a.PassWord.Equals(password) && a.UserName.Equals(user)).FirstOrDefault();
+                
+                if (user_ != null) 
                 {
                     user_.Permition = _db.Permitions.Where(a => a.Permition_Id.Equals(user_.Permition_Id)).First();
-                }      
-                return user_;
+                    return user_;
+                }else
+                {
+                    return new User() { User_Id = 0 };
+
+                }
+               
                 
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro Number: {ex.Message},  Target: {ex.TargetSite}");
+                Console.WriteLine($"Error on login request,Erro Number: {ex.Message},  Target: {ex.TargetSite}");
                 return new User() { User_Id =0}; 
             }
 

@@ -16,7 +16,14 @@ z-index:1;
     
     align-content: center;
 }
-li:hover {
+.minimun-size {
+min-height:560px;
+}
+#main li {
+    padding-right: 7px;
+    width: 140px;
+}
+ul#main li:hover {
     background-color: silver;
     padding-right: 7px;
     transition-delay: 0.1s;
@@ -26,9 +33,34 @@ li:hover {
     font-size: 14px;
     font-family: Arial Black;
     height: 49px;
+   
+}
+.li_end {
+    border-bottom-right-radius: 35px;
+}
+ul#menu li {
+    display: inline;
+    height: 52px;
+    cursor: pointer;
+}
+.m-l-50px {
+margin-left: 80px;
 
 }
-
+.reports_ {
+    height: 52px;
+}
+    ul#menu li:hover {
+        background-color: silver;
+        padding-right: 7px;
+        transition-delay: 0.1s;
+        transition-duration: 0.7s;
+        border-bottom: 7px solid black;
+        
+        font-size: 14px;
+        font-family: Arial Black;
+        height: 52px;
+    }
 .menuSm {
     color: white;
     font-size: medium;
@@ -67,7 +99,18 @@ li:hover {
         color: white;
         cursor: pointer;
     }
-
+.sobre:hover {
+    background-color: silver;
+    padding-right: 7px;
+    transition-delay: 0.1s;
+    transition-duration: 0.7s;
+    border-right: 8px solid black;
+    border-left: 8px solid black;
+    font-size: 14px;
+    font-family: Arial Black;
+    height: 49px;
+    border-bottom-right-radius: 35px;
+}
 .card-header h3 {
     color: white;
 }

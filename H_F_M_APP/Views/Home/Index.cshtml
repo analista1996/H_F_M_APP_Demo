@@ -1,13 +1,110 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    var resume = ViewData["resume"] as H_F_M_APPMODEL.Models.Resume.Resume;
 }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<div class="Main_index">
-    <div class="text-center">
 
-        <h1 class="display-4">Welcome</h1>
-        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="Main_index" ng-controller="hfmappCtrl" ng-app="hfmapp">
+    <div class="text-center" id="TableDiv">
+        <h6 class=" font-italic display-4">Resume </h6>
+        @if (resume.I_Budget > 0 || resume.Total_spend > 0)
+        {
+            <table style="width:100%;" class="table table-striped  text-capitalize">
+
+                <thead class="font-weight-bold">
+                    <tr>
+                        <td>
+                            <label title="Payment methods used by the user.">Methods</label>
+                        </td>
+                        <td>
+                            <label title="initial Budget and final budget after take the spends from the budget"> Initial BudGet</label>
+                        </td>
+                        <td>
+                            <label title="initial Budget and final budget after take the spends from the budget"> Final BudGet</label>
+                        </td>
+                        <td>
+                            <label title="initial Budget and final budget after take the spends from the budget"> Total Spend</label>
+                        </td>
+                        <td>
+                            <label title="based on you budget and spends we know how mush did you save.">Total Saved</label>
+                        </td>
+                    </tr>
+                </thead>
+
+
+
+                <tr>
+
+                    <td>
+                        <div id="chart">
+                            <div ng-repeat="resumes in resume['p_M_Used']">
+                                <label>{{resumes}}</label>
+                            </div>
+                        </div>
+                        <div id="msg">
+
+                        </div>
+                    </td>
+
+                    <td>
+                        {{resume['i_Budget'] | currency}}
+
+                    </td>
+                    <td>
+                        {{resume['f_Budget'] | currency}}
+                    </td>
+                    <td>
+                        {{resume['total_spend'] | currency}}
+                    </td>
+                    <td>
+                        @{//<input type="checkbox" ng-model="resume" />{{app}}
+                            //
+
+
+                        }
+                        {{resume['total_saved'] | currency}}
+                    </td>
+
+
+                </tr>
+
+
+            </table>
+        }
+        else
+        {
+            <hr style="height: 2px; background-color: black" />
+            
+            <p class="text-info font-weight-bold">You Dont have Any Spends yet, First Thing First Add An BudGet By Clicking on the bottom 'Add BudGet'</p><br />
+            <div  align="center"><a  class=" btn btn-success" asp-action="Create" asp-controller="BudGet">Add BudGet</a></div>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#CreatLink').hide();
+                    $('#TableDiv').height(350);
+                });
+
+            </script>
+        }
+        <div class="w-25"><a id="CreatLink" class=" btn btn-success" asp-action="Create" asp-controller="Spends">Create New</a></div>
     </div>
 </div>
-  
+
+@{
+
+}
+
+<script type="text/javascript">
+
+    //$("#msg").html(resume.Purchaser_Time.ToString());
+</script>
+<script type="text/javascript">
+
+    angular.module("hfmapp", []);
+    angular.module("hfmapp").controller("hfmappCtrl", function ($scope) {
+        $scope.app = "hfmapp";
+        $scope.resume = @Html.Raw(Json.Serialize(resume));
+    });
+</script>
+
 

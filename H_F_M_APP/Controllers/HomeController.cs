@@ -10,19 +10,25 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
+using System.IO;
+using H_F_M_APPMODEL.Models.Resume;
+using H_F_M_APP.Models.IReporsitory.IResume;
 
 namespace H_F_M_APP.Controllers
 {
+    
     public class HomeController : Controller
     {
-         private readonly ILogger<HomeController> _logger;
-       
-        public HomeController(ILogger<HomeController> logger)
+        //private readonly ILogger<HomeController> _logger;
+        private readonly HFM_Context _db;
+        public HomeController(HFM_Context db)
         {
-            _logger = logger;
+           _db= db;
         }
-        
+
+      
        
         public IActionResult Index()
         {
@@ -32,15 +38,32 @@ namespace H_F_M_APP.Controllers
             }
             else
             {
+
+                /*instance of resumerepository where contains methods which one bring all informations
+                  about an specific user*/
+                var resume = new ResumeRepository(_db);
+                //sending resume informations to the view by viewdata 
+                ViewData["resume"] = resume.GetResume(HttpContext);
+                //returning view 
                 return View();
             }
         }
-
-        public IActionResult Privacy()
+    
+   
+   
+    public IActionResult Privacy()
         {
-            return View();
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Loged")))
+            {
+                 return View("~/Views/User/Index.cshtml"); 
+            }
+            else
+            {
+                return View(); 
+            }
+                
         }
-
+       
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -10,6 +10,11 @@ a.navbar-brand {
     background-color:aqua;
 float:left;
 }
+.max 
+{
+    max-height:500px;
+}
+
 .body {
     background-image: url(../lib/Images/backMain.jpg);
     background-size: cover;
@@ -18,9 +23,22 @@ float:left;
     margin-bottom: 85px;
     height: 89%;
 }
+.search {
+    border-color:white;
+    box-shadow:black 4px 4px 8px;
+    padding:3px 3px 3px 3px;
+    margin:3.5px 5px 8px 2px;
+    color:blue;
+  
+
+}
+.w-15 {
+width:15%;
+margin-top:3.5px;
+}
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: #0366d6;
 }
 
 .btn-primary {
@@ -99,4 +117,12 @@ margin-left:70%;
 margin-top:0px;
 background-color:white;
 
+}
+.hr {
+width:50%;
+height:2px;
+color:silver;
+background-color:white;
+border-width:1px;border-color:black;
+border-style:solid;
 }
