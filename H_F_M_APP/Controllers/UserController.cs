@@ -58,8 +58,8 @@ namespace H_F_M_APP.Controllers
             {
                 //passing values about the user to the session
                 string data = $"{User.UserName}_" +
-                 $"{User.User_Id.ToString()}_" +
-                 $"{User.Permition.Permition_Type.ToString()}_";
+                 $"{User.User_Id}_" +
+                 $"{User.Permition.Permition_Type}_";
                 //setting the session name and value
                 HttpContext.Session.SetString("Loged",data);
                 /*instance of resumerepository where contains methods which one bring all informations

@@ -32,7 +32,7 @@ namespace H_F_M_APP.Controllers
 
             //load the entites used on the view.
             _db.Payment_Methods.ToList();
-            _db.Users.ToList();
+            _db.Users.Where(c=>c.User_Id == User_Id).ToList();
             //filter and order by
             //sort by value using the hiperlink
             ViewData["SortByValue"] = string.IsNullOrEmpty(orderby) ? "value":"";
@@ -94,7 +94,7 @@ namespace H_F_M_APP.Controllers
               {
                   Value = a.P_M_Id.ToString(),
                   Text = a.Name
-              }).ToList(); ;
+              }).ToList();
             ViewBag.P_List = a;
             return View();
         }
